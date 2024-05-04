@@ -20,7 +20,5 @@ const helmet = require("helmet");
      app.use(helmet(), express.static('../client/dist'));
   }
 
-  app.listen(3000, () => {
-    console.log("Server running at http://localhost:3000");
-  });
+  app.listen(process.env.PORT || 3000);
 })();
