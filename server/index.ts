@@ -1,6 +1,7 @@
 const express = require("express");
 const { createServer } = require("vite");
 const helmet = require("helmet");
+const cors = require("cors");
 
 
 (async () => {
@@ -19,6 +20,6 @@ const helmet = require("helmet");
   } else {
      app.use(helmet(), express.static('../client/dist'));
   }
-
+  app.use(cors());
   app.listen(process.env.PORT || 3000);
 })();
