@@ -1,0 +1,169 @@
+#contact {
+  color: #fff;
+  background-color: #52414c;
+}
+
+.contact-content-wrapper {
+  display: flex;
+  border-top: 0.35em solid #5b8c5a;
+  width: 100%;
+  height: 70%;
+}
+
+.contact-content {
+  width: 50%;
+}
+
+.contact-content:first-child {
+  padding: 1em;
+}
+
+.contact-detail-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 2em 0 0 2em;
+}
+
+.contact-detail-icon {
+  font-size: 2.5em;
+  background-color: #e3655b;
+  color: #fff;
+  border-radius: 50px;
+  height: 1.25em;
+  width: 1.25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-form {
+  display: flex;
+  justify-content: center;
+  padding-top: 1em
+}
+
+
+.contact-form-wrapper {
+	height: 80%;
+	width: 90%;
+	background-color: #e3655b;
+  padding: 1em;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.contact-form-wrapper h1 {
+  color: #fff;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.form-row label {
+  color: #fff;
+}
+
+.form-input {
+  border-radius: 4px;
+  border: none;
+  max-width: 50%;
+  padding: 0.35em;
+}
+
+.text-area {
+  max-width: 100%;
+  height: 8em;
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+.contact-form-button {
+  height: 3em;
+  width: 7em;
+  border-radius: 4px;
+  border: none;
+  background-color: #52424c;
+  color: #fff;
+  box-sizing: border-box;
+  background-color: #52424c;
+  color: #fff;
+  position: relative;
+}
+
+.contact-form-button:hover {
+	box-shadow: rgba(82, 66, 76, 0.5) 0 3px 5px -1px;
+}
+
+.button__text {
+  transition: all 0.2s;
+}
+
+.button--loading .button__text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.button--loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.form-error-message {
+  max-width: 100%;
+  text-wrap: wrap;
+  color: #fff;
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+
+@media screen and (max-width: 900px) {
+  .contact-content-wrapper {
+    flex-direction: column;
+  }
+  .contact-form-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .contact-content {
+    width: 100%;
+  }
+
+  .form-input {
+    max-width: 100%;
+  }
+}

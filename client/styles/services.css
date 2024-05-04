@@ -1,0 +1,110 @@
+#services {
+  background-color: #e0e3dc;
+}
+
+#services-header {
+  border-bottom: 0.35em solid #E3655b;
+}
+
+
+.services-tag-line {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.services-content {
+  display: flex;
+  border-bottom: 0.35em solid #e3655b;
+}
+
+.services-content-section {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  width: 50%;
+}
+
+.services-content-section:first-child {
+  border-right: 0.35em solid #E3655b;
+}
+
+.services-list-item::marker {
+  color:#E3655b
+}
+
+.service-offering-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.service-offering-line .material-icons {
+  color: #e3655b;
+}
+
+.communication {
+  padding: 1em;
+}
+.communication-title {
+  text-align: center;
+}
+
+.communication-process-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+
+.communication-card {
+  width: 33%;
+  min-height: 400px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.communication-card-image {
+  width: 100%;
+  height: 200px;
+}
+
+#workshops {
+  background: url('../images/project-management.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+#development {
+  background: url('../images/web-development.jpg') no-repeat center center;
+  background-size: cover;
+}
+ #agile {
+  background: url('../images/agile.jpg') no-repeat center center;
+  background-size: cover;
+ }
+
+.communication-card-content-wrapper {
+  padding: 1em;
+}
+
+@media screen and (max-width: 900px) {
+  .services-content {
+    padding: 1em;
+    flex-direction: column;
+  }
+
+  .services-content-section {
+    margin-bottom: 1em;
+    padding: 0;
+    width: 100%;
+  }
+  .services-content-section:first-child{
+    border: none;
+  }
+
+  .communication-process-wrapper {
+    flex-direction: column;
+  }
+
+  .communication-card {
+    width: 100%;
+  }
+}

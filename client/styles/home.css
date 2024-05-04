@@ -1,0 +1,52 @@
+#home {
+  background-color: #e0e3dc;
+  background: url('../images/home.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner {
+	height: 100%;
+	width: 100%;
+	/* background-color: rgba(82, 66, 76, 0.5); */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 0 3em;
+	opacity: 0.9;
+}
+
+.banner img {
+	height: 200px;
+}
+
+.banner-title {
+	font-size: 30px;
+	color:#fff
+}
+
+.banner-text {
+	color:#fff;
+	font-size: 20px;
+	padding-top: 1.5em;
+}
+
+@media screen and (max-width: 600px) {
+  .banner-title {
+    text-align: center;
+  }
+	.banner {
+		padding-top: 4em;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.banner {
+    width: 100%;
+	}
+}

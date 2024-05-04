@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  line-height: 1.5em;
+  cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* background-color: #e0e3dc; */
+  font-family: Montserrat;
+  background: #639fb6;
+  color: #f59799;
+}
