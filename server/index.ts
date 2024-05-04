@@ -18,7 +18,7 @@ const cors = require("cors");
 
     app.use(vite.middlewares);
   } else {
-     app.use(helmet(), express.static('../client/dist'));
+     app.use(express.static('../client/dist'));
   }
   app.use(cors());
   app.listen(process.env.PORT || 3000);
