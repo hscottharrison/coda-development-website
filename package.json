@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "cd client && npm install && npm run build && cd ../ && cd server && npm install && npm run start"
+    "start": "cd client && npm i && npm run build && cd ../ && cd server && npm i && npm run start"
   },
   "repository": {
     "type": "git",
