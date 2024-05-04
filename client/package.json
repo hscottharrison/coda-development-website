@@ -8,10 +8,8 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {
-    "vite": "^5.2.0"
-  },
   "dependencies": {
+    "vite": "^5.2.0",
     "coda-ui": "^1.5.0"
   }
 }
