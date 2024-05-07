@@ -1,0 +1,13 @@
+.new-post-form {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 100%;
+  margin-top: 20px;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}

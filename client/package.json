@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.43.1",
-    "coda-ui": "^1.5.0",
+    "coda-ui": "^1.7.0",
     "vite": "^5.2.0"
   }
 }
