@@ -40,12 +40,15 @@ categories.forEach(category => {
 async function submitForm(event) {
   event.preventDefault();
   const session = getSession();
-  console.log(session);
   const title = document.querySelector('#title').value;
   const content = document.querySelector('#content').value;
   const categoryid = document.querySelector('#categories').value;
   const response = await fetch('http://localhost:8080/posts', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': session.access_token
+    },
     body: JSON.stringify({
       posttitle: title,
       content,
