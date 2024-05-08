@@ -2,7 +2,7 @@ import { supabase } from '../scripts/auth.js';
 
 // FUNCTION DEFINITIONS
 async function fetchCategories() {
-  const response = await (await fetch('http://localhost:8080/categories')).json();
+  const response = await (await fetch('https://coda-development-blog-server-7608b8fd306e.herokuapp.com/categories')).json();
   return response
 }
 
@@ -59,7 +59,7 @@ async function submitForm(event) {
   const content = document.querySelector('#content').value;
   const categoryId = document.querySelector('#categories').value;
   const imageUrl = document.querySelector('#image-preview').src;
-  const response = await fetch('http://localhost:8080/posts', {
+  const response = await fetch('https://coda-development-blog-server-7608b8fd306e.herokuapp.com/posts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

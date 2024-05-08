@@ -8,7 +8,7 @@ nav {
 	background-color: rgba(82, 66, 76, 0.5);
   color: #fff;
   width: 100%; 
-  height: 50px;
+  height: 75px;
   z-index: 9999999;
 }
 
@@ -22,8 +22,8 @@ nav {
 }
 
 .logo img {
-  height: 40px;
-  width: 40px;
+  height: 70px;
+  width: 70px;
   margin-right: 0.5em;
 }
 
