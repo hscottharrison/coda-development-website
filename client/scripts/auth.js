@@ -16,10 +16,9 @@ if (!supabase) {
 }
 
 supabase.auth.onAuthStateChange((event, session) => {
-  console.log(session)
-    if (event === "SIGNED_IN" && window.location.pathname !== '/admin/') {
-      window.location.href = '/admin/';
-    } else if (event === "SIGNED_OUT" && window.location.pathname !== '/login/') {
-      window.location.href = '/login/';
-    }
+  if (event === "SIGNED_IN" && window.location.pathname !== '/admin/') {
+    window.location.href = '/admin/';
+  } else if (event === "SIGNED_OUT" && window.location.pathname !== '/login/') {
+    window.location.href = '/login/';
+  }
 });

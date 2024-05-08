@@ -1,12 +1,9 @@
 import { supabase } from '../scripts/auth.js';
-import { wrapper, container } from 'coda-ui'
 
-async function signOut() {
-  let { error } = await supabase.auth.signOut();
-  if (error) {
-    console.error('Error logging out:', error.message);
-    return;
-  }
+// FUNCTION DEFINITIONS
+async function fetchCategories() {
+  const response = await (await fetch('http://localhost:8080/categories')).json();
+  return response
 }
 
 function getSession() {
@@ -17,32 +14,51 @@ function getSession() {
   return sessionData;
 }
 
-async function fetchCategories() {
-  const response = await (await fetch('http://localhost:8080/categories')).json();
-  return response
+async function getSetCategories() {
+  const categories = await fetchCategories();
+  const categorySelect = document.querySelector('select');
+  categories.forEach(category => {
+    const option = document.createElement('option');
+    option.value = category.id;
+    option.textContent = category.categoryName;
+    categorySelect.appendChild(option);
+  });
 }
 
+async function handleImageUpload(event) {
+  const file = event.target.files[0];
+  const { data, error } = await supabase.storage
+    .from('blogimages')
+    .upload(`public/${file.name}`, file);
 
-const token = getSession()?.access_token
-if(!token) {
-  window.location.href = '/login/';
+  if (error) {
+    console.error('Error uploading file:', error.message);
+    return;
+  }
+  console.log({data, error})
+  const supabaseProjectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
+  const supabaseUrl = `https://${supabaseProjectId}.supabase.co`
+  const imageURL = `${supabaseUrl}/storage/v1/object/public/${data.fullPath}`;
+
+  const imagePreview = document.querySelector('#image-preview');
+  imagePreview.src = imageURL;
 }
 
-const categories = await fetchCategories();
-const categorySelect = document.querySelector('select');
-categories.forEach(category => {
-  const option = document.createElement('option');
-  option.value = category.id;
-  option.textContent = category.categoryname;
-  categorySelect.appendChild(option);
-});
+async function signOut() {
+  let { error } = await supabase.auth.signOut();
+  if (error) {
+    console.error('Error logging out:', error.message);
+    return;
+  }
+}
 
 async function submitForm(event) {
   event.preventDefault();
   const session = getSession();
-  const title = document.querySelector('#title').value;
+  const postTitle = document.querySelector('#title').value;
   const content = document.querySelector('#content').value;
-  const categoryid = document.querySelector('#categories').value;
+  const categoryId = document.querySelector('#categories').value;
+  const imageUrl = document.querySelector('#image-preview').src;
   const response = await fetch('http://localhost:8080/posts', {
     method: 'POST',
     headers: {
@@ -50,10 +66,11 @@ async function submitForm(event) {
       'Authorization': session.access_token
     },
     body: JSON.stringify({
-      posttitle: title,
+      postTitle,
       content,
-      categoryid: Number(categoryid),
-      userId: session.user.id
+      categoryId: Number(categoryId),
+      userId: session.user.id,
+      imageUrl
     })
   });
   if(response.status === 201) {
@@ -63,5 +80,24 @@ async function submitForm(event) {
   }
 }
 
-document.querySelector('form')?.addEventListener('submit', submitForm);
-document.querySelector('#logout')?.addEventListener('click', signOut); 
+
+
+function verifySession() {
+  const token = getSession()?.access_token
+  if(!token) {
+    window.location.href = '/login/';
+  }
+}
+
+async function init() {
+  verifySession();
+  getSetCategories();
+
+  // ADD EVENT LISTENERS
+  document.querySelector('form')?.addEventListener('submit', submitForm);
+  document.querySelector('#logout')?.addEventListener('click', signOut); 
+  document.querySelector('#image-upload').addEventListener('change', handleImageUpload);
+}
+
+// CALL STACK
+await init();
