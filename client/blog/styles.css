@@ -1,0 +1,29 @@
+.blog-wrapper {
+  width: 75%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  padding: 1em 2em;
+  height: 75px;
+  width: 100%;
+}
+
+.logo-wrapper {
+  display: flex;
+  color: #000;
+  align-items: center;
+}
+
+.logo-wrapper img {
+  height: 70px;
+  width: 70px;
+  margin-right: 1em;
+}
+
+.logo-wrapper h1 {
+  font-weight: bold;
+}
