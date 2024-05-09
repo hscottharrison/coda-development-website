@@ -27,7 +27,7 @@ function createPostList(posts) {
   });
 }
 async function getPosts() {
-  return await(await fetch('https://coda-development-blog-server-7608b8fd306e.herokuapp.com/posts')).json();
+  return await(await fetch(`${import.meta.env.VITE_BLOG_SERVER_URL}/posts`)).json();
 }
 
 function updateActiveLink(post) {
