@@ -1,15 +1,20 @@
 import { supabase } from '../scripts/auth.js';
 import { createPostList } from '../scripts/utils.js';
 
+// VARIABLES
 let currentPostId = null;
 
-const title = document.querySelector('#title');
-const content = document.querySelector('#content');
-const imagePreview = document.querySelector('#image-preview');
+// ELEMENTS
 const category = document.querySelector('#categories');
+const content = document.querySelector('#content');
 const deleteButton = document.querySelector('#delete-button');
+const formTitle = document.querySelector('#form-title');
+const imagePreview = document.querySelector('#image-preview');
+const title = document.querySelector('#title');
+
 // FUNCTION DEFINITIONS
 function createNewPost() {
+  formTitle.innerHTML = 'Create New Post';
   deleteButton.style.display = 'none';
   currentPostId = null;
   title.value = '';
@@ -38,6 +43,7 @@ async function deletePost(event) {
 }
 
 function editPost(post) {
+  formTitle.innerHTML = `Edit Post: ${post.postTitle}`;
   deleteButton.style.display = 'flex';
   currentPostId = post.id;
   title.value = post.postTitle;
@@ -127,9 +133,9 @@ async function submitForm(event) {
     })
   });
   if(response.status === 200) {
-    alert('Post created successfully');
+    alert(`Post ${method === 'POST' ? 'created' : 'edited'} successfully`);
   } else {
-    alert('There was an error creating the post');
+    alert(`There was an error ${method === 'Post' ? 'creating' : 'editing'} the post`);
   }
 }
 
