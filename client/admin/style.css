@@ -1,3 +1,6 @@
+.form-wrapper {
+  width: 80%;
+}
 .new-post-form {
   display: flex;
   flex-direction: column;
@@ -10,4 +13,27 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
+}
+
+#image-preview {
+  height: 300px;
+  width: 500px;
+}
+
+.toggle-list-wrapper {
+  width: 20%;
+}
+
+#delete-button {
+  display: none;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80px;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }

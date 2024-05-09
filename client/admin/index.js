@@ -1,9 +1,59 @@
 import { supabase } from '../scripts/auth.js';
+import { createPostList } from '../scripts/utils.js';
 
+let currentPostId = null;
+
+const title = document.querySelector('#title');
+const content = document.querySelector('#content');
+const imagePreview = document.querySelector('#image-preview');
+const category = document.querySelector('#categories');
+const deleteButton = document.querySelector('#delete-button');
 // FUNCTION DEFINITIONS
+function createNewPost() {
+  deleteButton.style.display = 'none';
+  currentPostId = null;
+  title.value = '';
+  content.value = '';
+  imagePreview.src = '';
+  category.value = '';
+}
+
+async function deletePost(event) {
+  event.preventDefault();
+  if (!confirm("Are you sure you want to delete this post?")) return;
+  const url = `${import.meta.env.VITE_BLOG_SERVER_URL}/posts/${currentPostId}`;
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': getSession().access_token
+    }
+  });
+
+  if(response.status === 200) {
+    alert('Post deleted successfully');
+  } else {
+    alert('There was an error deleting the post')
+  }
+  window.location.reload();
+}
+
+function editPost(post) {
+  deleteButton.style.display = 'flex';
+  currentPostId = post.id;
+  title.value = post.postTitle;
+  content.value = post.content;
+  imagePreview.src = post.imageUrl;
+  category.value = post.categoryId;
+}
+
 async function fetchCategories() {
   const response = await (await fetch(`${import.meta.env.VITE_BLOG_SERVER_URL}/categories`)).json();
   return response
+}
+
+async function getPosts() {
+  const response = await (await fetch(`${import.meta.env.VITE_BLOG_SERVER_URL}/posts`)).json();
+  return response;
 }
 
 function getSession() {
@@ -35,7 +85,6 @@ async function handleImageUpload(event) {
     console.error('Error uploading file:', error.message);
     return;
   }
-  console.log({data, error})
   const supabaseProjectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
   const supabaseUrl = `https://${supabaseProjectId}.supabase.co`
   const imageURL = `${supabaseUrl}/storage/v1/object/public/${data.fullPath}`;
@@ -59,8 +108,12 @@ async function submitForm(event) {
   const content = document.querySelector('#content').value;
   const categoryId = document.querySelector('#categories').value;
   const imageUrl = document.querySelector('#image-preview').src;
-  const response = await fetch(`${VITE_BLOG_SERVER_URL}/posts`, {
-    method: 'POST',
+
+  const baseUrl = `${import.meta.env.VITE_BLOG_SERVER_URL}/posts`
+  const url = currentPostId ? `${baseUrl}/${currentPostId}` : baseUrl;
+  const method = currentPostId ? 'PUT' : 'POST';
+  const response = await fetch(url, {
+    method,
     headers: {
       'Content-Type': 'application/json',
       'Authorization': session.access_token
@@ -73,7 +126,7 @@ async function submitForm(event) {
       imageUrl
     })
   });
-  if(response.status === 201) {
+  if(response.status === 200) {
     alert('Post created successfully');
   } else {
     alert('There was an error creating the post');
@@ -91,12 +144,17 @@ function verifySession() {
 
 async function init() {
   verifySession();
-  getSetCategories();
+  await getSetCategories();
+  const posts = await getPosts();
+  createPostList(posts, 'toggle-list-wrapper', editPost)
+
 
   // ADD EVENT LISTENERS
   document.querySelector('form')?.addEventListener('submit', submitForm);
   document.querySelector('#logout')?.addEventListener('click', signOut); 
   document.querySelector('#image-upload').addEventListener('change', handleImageUpload);
+  document.querySelector('#new-post').addEventListener('click', createNewPost);
+  document.querySelector('#delete-button').addEventListener('click', deletePost);
 }
 
 // CALL STACK

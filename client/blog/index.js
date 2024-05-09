@@ -26,6 +26,7 @@ function createPostList(posts) {
     postList.appendChild(postItem);
   });
 }
+
 async function getPosts() {
   return await(await fetch(`${import.meta.env.VITE_BLOG_SERVER_URL}/posts`)).json();
 }
