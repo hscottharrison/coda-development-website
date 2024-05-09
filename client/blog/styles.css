@@ -92,3 +92,39 @@ nav {
 .active {
   color: #e3655b
 }
+
+@media screen and (max-width: 1100px) {
+  .blog-container {
+    flex-direction: column;
+  }
+
+  .current-blog-section {
+    width: 100%;
+  }
+
+  .blog-list-section {
+    width: 100%;
+    margin-top: 2em;
+  }
+
+}
+
+@media screen and (max-width: 1100px) {
+  .blog-wrapper {
+    width: 100%;
+  }
+  nav {
+    width: 100%;
+    flex-direction: column;
+  }
+  logo-wrapper {
+    margin-bottom: 1em;
+  }
+
+  .blog-image-wrapper {
+    height: 300px;
+  }
+  .blog-list-section {
+    padding: 1em;
+  }
+}
