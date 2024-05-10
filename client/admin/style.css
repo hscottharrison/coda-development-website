@@ -15,6 +15,17 @@
   margin-bottom: 1em;
 }
 
+.checkbox-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.checkbox-item input {
+  margin-left: 1em;
+}
+
 #image-preview {
   height: 300px;
   width: 500px;

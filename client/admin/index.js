@@ -11,6 +11,7 @@ const deleteButton = document.querySelector('#delete-button');
 const formTitle = document.querySelector('#form-title');
 const imagePreview = document.querySelector('#image-preview');
 const title = document.querySelector('#title');
+const draft = document.querySelector('#draft');
 
 // FUNCTION DEFINITIONS
 function createNewPost() {
@@ -21,6 +22,7 @@ function createNewPost() {
   content.value = '';
   imagePreview.src = '';
   category.value = '';
+  draft.checked = true;
 }
 
 async function deletePost(event) {
@@ -50,6 +52,7 @@ function editPost(post) {
   content.value = post.content;
   imagePreview.src = post.imageUrl;
   category.value = post.categoryId;
+  draft.checked = post.isDraft;
 }
 
 async function fetchCategories() {
@@ -58,7 +61,7 @@ async function fetchCategories() {
 }
 
 async function getPosts() {
-  const response = await (await fetch(`${import.meta.env.VITE_BLOG_SERVER_URL}/posts`)).json();
+  const response = await (await fetch(`${import.meta.env.VITE_BLOG_SERVER_URL}/posts/true`)).json();
   return response;
 }
 
@@ -114,6 +117,7 @@ async function submitForm(event) {
   const content = document.querySelector('#content').value;
   const categoryId = document.querySelector('#categories').value;
   const imageUrl = document.querySelector('#image-preview').src;
+  const isDraft = document.querySelector('#draft').checked;
 
   const baseUrl = `${import.meta.env.VITE_BLOG_SERVER_URL}/posts`
   const url = currentPostId ? `${baseUrl}/${currentPostId}` : baseUrl;
@@ -129,7 +133,8 @@ async function submitForm(event) {
       content,
       categoryId: Number(categoryId),
       userId: session.user.id,
-      imageUrl
+      imageUrl,
+      isDraft
     })
   });
   if(response.status === 200) {

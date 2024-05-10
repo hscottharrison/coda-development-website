@@ -28,7 +28,7 @@ function createPostList(posts) {
 }
 
 async function getPosts() {
-  return await(await fetch(`${import.meta.env.VITE_BLOG_SERVER_URL}/posts`)).json();
+  return await(await fetch(`${import.meta.env.VITE_BLOG_SERVER_URL}/posts/false`)).json();
 }
 
 function updateActiveLink(post) {

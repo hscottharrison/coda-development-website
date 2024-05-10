@@ -3,16 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
 </head>
 <body>
+  <div class="wrapper form-wrapper">
     <form>
-        <h2>Coda Login</h2>
-        <input id="email" type="email" placeholder="Email" name="email">
-        <input id="password" type="password" placeholder="Password" name="password">
-        <button type="submit">Login</button>
+      <h2>Coda Login</h2>
+      <coda-input
+        id="email"
+        type="email"
+        placeholder="Email"
+        focusColor="#e3655b"
+        label="Email"
+      ></coda-input>
+      <coda-input
+        id="password"
+        type="password"
+        placeholder="Password"
+        focusColor="#e3655b"
+        label="Password"
+      ></coda-input>
+      <coda-button
+        textColor="#fff"
+        hoverColor="#e3655b"
+        text="Login"
+        type="submit"
+        color="#52414c"
+      >
+      </coda-button>
     </form>
+  </div>
 
-    <script src="./index.js" type="module"></script>
+  <script src="./index.js" type="module"></script>
 </body>
 </html>
